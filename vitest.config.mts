@@ -4,9 +4,9 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 const config = defineConfig(() => {
   const alias = {
-    '~/': new URL('./src/', import.meta.url).pathname, 
+    '~/': new URL('./src/', import.meta.url).pathname,
   }
-  
+
   return {
     test: {
       projects: [
@@ -17,11 +17,12 @@ const config = defineConfig(() => {
             include: ['src/server/**/*.test.ts'],
             environment: 'node',
             name: 'server',
+            setupFiles: ['./vitest.server.setup.ts'],
           }
         },
         {
           plugins: [tsconfigPaths(), react()],
-          test: { 
+          test: {
             alias,
             include: ['src/app/**/*.test.{ts,tsx}'],
             environment: 'jsdom',

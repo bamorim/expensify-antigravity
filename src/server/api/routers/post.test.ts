@@ -1,24 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect } from "vitest";
 import { postRouter } from "./post";
-import { auth, signIn } from "~/server/auth";
 import { db } from "~/server/db";
 import { faker } from "@faker-js/faker";
 
-// Mock the database to use the transactional testing wrapper
-vi.mock("~/server/db");
-
-// Mock the auth module
-vi.mock("~/server/auth", () => ({
-  auth: vi.fn(),
-}));
-
-const mockAuth = vi.mocked(auth);
-
 describe("PostRouter", () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   describe("create", () => {
     it("should create a post successfully", async () => {
       const user = await db.user.create({
