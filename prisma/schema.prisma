@@ -51,23 +51,25 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
+    id            String       @id @default(cuid())
     name          String?
-    email         String?   @unique
+    email         String?      @unique
     emailVerified DateTime?
     image         String?
     accounts      Account[]
     sessions      Session[]
     posts         Post[]
     memberships   Member[]
+    invitations   Invitation[]
 }
 
 model Organization {
-    id        String   @id @default(cuid())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    members   Member[]
+    id          String       @id @default(cuid())
+    name        String
+    createdAt   DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
+    members     Member[]
+    invitations Invitation[]
 }
 
 model Member {
@@ -94,4 +96,19 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Invitation {
+    id             String       @id @default(cuid())
+    email          String
+    role           Role         @default(MEMBER)
+    token          String       @unique
+    expires        DateTime
+    organizationId String
+    organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+    inviterId      String
+    inviter        User         @relation(fields: [inviterId], references: [id], onDelete: Cascade)
+    createdAt      DateTime     @default(now())
+
+    @@unique([email, organizationId])
 }

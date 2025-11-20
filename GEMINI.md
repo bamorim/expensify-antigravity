@@ -93,8 +93,7 @@ When making architectural decisions:
 - **Integration Tests**: Test procedures end-to-end using `createCaller` with transactional testing
 - **Test Coverage**: Aim for high coverage of business logic in procedures
 - **Mock Strategy**: Use `vitest-mock-extended` for Prisma mocking when needed
-- **Transactional Testing**: Use `@chax-at/transactional-prisma-testing` for database operations
-- When testing server code that require the database, remember to call `vi.mock("~/server/db")` to enable transactional testing
+- **Transactional Testing**: Use `@chax-at/transactional-prisma-testing` for database operations. Do NOT mock the database manually (e.g. `ctx.db.organization.create.mockResolvedValue`). Instead, use the real Prisma client wrapped in a transaction.
 
 ## Performance Requirements
 
