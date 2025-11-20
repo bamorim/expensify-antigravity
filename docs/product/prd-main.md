@@ -123,4 +123,3 @@ Organizations need a streamlined system to manage employee expense reimbursement
 | Policy conflicts    | High   | Medium     | Clear precedence rules and debugging tools    |
 | User adoption       | High   | Medium     | Intuitive UI and clear onboarding             |
 | Data isolation bugs | High   | Low        | Thorough testing of multi-tenant architecture |
-

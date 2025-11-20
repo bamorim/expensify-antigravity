@@ -9,7 +9,7 @@
 - **Created**: 2025-11-20
 - **Updated**: 2025-11-20
 - **Estimated Effort**: 1 Day
-- **Actual Effort**: 
+- **Actual Effort**:
 
 ## Related Documents
 

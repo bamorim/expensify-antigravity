@@ -90,7 +90,7 @@ export const postRouter = createTRPCRouter({
       orderBy: { createdAt: "desc" },
     });
   }),
-  
+
   create: protectedProcedure
     .input(z.object({ title: z.string(), content: z.string() }))
     .mutation(async ({ ctx, input }) => {
@@ -107,12 +107,14 @@ export const postRouter = createTRPCRouter({
 ```
 
 **Benefits of this approach:**
+
 - **Simpler architecture** - No additional abstraction layer
 - **Direct database access** - Business logic has immediate access to Prisma client
 - **Easy testing** - Test the entire procedure including business logic
 - **Type safety** - Full end-to-end type safety with tRPC
 
 **When to consider services:**
+
 - Complex business logic that spans multiple routers
 - Logic that needs to be reused across different procedures
 - Heavy computational operations that benefit from separation
@@ -165,14 +167,14 @@ import { db } from "~/server/db/__mocks__";
 describe("Post Router", () => {
   it("should create and retrieve posts", async () => {
     const caller = createCaller({ db, session: null, headers: new Headers() });
-    
+
     // This runs in a transaction and gets rolled back
-    const created = await caller.post.create({ 
-      title: "Test Post", 
-      content: "Test Content" 
+    const created = await caller.post.create({
+      title: "Test Post",
+      content: "Test Content",
     });
     const allPosts = await caller.post.all();
-    
+
     expect(allPosts).toHaveLength(1);
     expect(allPosts[0]).toEqual(created);
   });
@@ -198,12 +200,14 @@ describe("SimpleComponent", () => {
 ```
 
 **What to Skip**:
+
 - Complex UI interactions
 - Form validation flows
 - Animation and visual effects
 - Integration with external libraries
 
 **What to Test**:
+
 - Utility functions
 - Data transformation logic
 - Simple presentational components
@@ -218,4 +222,3 @@ describe("SimpleComponent", () => {
 5. **Keep component tests simple** and focused on rendering
 6. **Use integration tests** for critical user flows through tRPC
 7. **Prefer manual testing** for complex UI interactions
-

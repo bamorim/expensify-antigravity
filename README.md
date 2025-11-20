@@ -23,28 +23,34 @@ A modern, type-safe expense management system built with the T3 Stack.
 ## Getting Started
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/your-username/expensify.git
    cd expensify
    ```
 
 2. Install dependencies:
+
    ```bash
    pnpm install
    ```
 
 3. Set up your environment variables:
+
    ```bash
    cp .env.example .env
    ```
+
    Then edit `.env` with your database and WorkOS credentials
 
 4. Start the database:
+
    ```bash
    docker compose up -d
    ```
 
 5. Initialize the database:
+
    ```bash
    pnpm db:generate
    pnpm db:push

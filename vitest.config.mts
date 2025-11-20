@@ -1,11 +1,11 @@
-import { defineConfig } from 'vitest/config'
-import react from '@vitejs/plugin-react'
-import tsconfigPaths from 'vite-tsconfig-paths'
+import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 const config = defineConfig(() => {
   const alias = {
-    '~/': new URL('./src/', import.meta.url).pathname,
-  }
+    "~/": new URL("./src/", import.meta.url).pathname,
+  };
 
   return {
     test: {
@@ -14,25 +14,25 @@ const config = defineConfig(() => {
           plugins: [tsconfigPaths()],
           test: {
             alias,
-            include: ['src/server/**/*.test.ts'],
-            environment: 'node',
-            name: 'server',
-            setupFiles: ['./vitest.server.setup.ts'],
-          }
+            include: ["src/server/**/*.test.ts"],
+            environment: "node",
+            name: "server",
+            setupFiles: ["./vitest.server.setup.ts"],
+          },
         },
         {
           plugins: [tsconfigPaths(), react()],
           test: {
             alias,
-            include: ['src/app/**/*.test.{ts,tsx}'],
-            environment: 'jsdom',
-            name: 'app',
-            setupFiles: ['./vitest.react.setup.ts'],
-          }
-        }
+            include: ["src/app/**/*.test.{ts,tsx}"],
+            environment: "jsdom",
+            name: "app",
+            setupFiles: ["./vitest.react.setup.ts"],
+          },
+        },
       ],
     },
-  }
-})
+  };
+});
 
 export default config;
